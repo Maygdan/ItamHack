@@ -1,0 +1,51 @@
+.not-found-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  color: #17222c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.not-found-title {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #1b0202;
+  margin: 0 0 1rem;
+  animation: pulse 2s infinite;
+}
+
+.not-found-message {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .not-found-title {
+    font-size: 3rem;
+  }
+
+  .not-found-message {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
