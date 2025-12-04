@@ -3,11 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 20px;
+}
+
+.home-title-centered {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .home-title {
@@ -17,6 +23,41 @@
   letter-spacing: 1px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 1s ease-out;
+}
+
+.home-nav-centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.home-nav-centered a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.home-nav-centered a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.home-logout-btn {
+  margin-left: 10px;
+  background: #ff4444;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-logout-btn:hover {
+  background: #cc0000;
 }
 
 @keyframes fadeInUp {
@@ -30,9 +71,81 @@
   }
 }
 
+.home-subtitle {
+  font-size: 1.5rem;
+  text-align: center;
+  margin: 10px 0 40px 0;
+  opacity: 0.9;
+}
+
+.home-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.option-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 30px 25px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.option-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.option-card h3 {
+  color: white;
+  margin: 0 0 15px 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.option-card p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 @media (max-width: 768px) {
   .home-title {
     font-size: 2rem;
     padding: 0 1rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+    margin: 5px 0 30px 0;
+  }
+
+  .home-options {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 1rem;
+  }
+
+  .option-card {
+    padding: 25px 20px;
+  }
+
+  .option-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .option-card p {
+    font-size: 0.9rem;
   }
 }

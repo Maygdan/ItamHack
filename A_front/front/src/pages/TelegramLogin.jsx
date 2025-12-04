@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import api from "../api";
 import "../styles/TelegramLogin.css";
@@ -9,6 +9,7 @@ function TelegramLogin() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const location = useLocation();
 
     useEffect(() => {
         const codeFromUrl = searchParams.get('code');
@@ -23,10 +24,19 @@ function TelegramLogin() {
 
         try {
             const res = await api.post("/api/login_with_code/", { code });
-            localStorage.setItem(ACCESS_TOKEN, res.data.access);
-            localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
-            navigate("/");
+
+            // Save tokens to localStorage
+            if (res.data.access && res.data.refresh) {
+                localStorage.setItem(ACCESS_TOKEN, res.data.access);
+                localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+
+                // Navigate to root - UserTypeRouter will handle redirection based on user type
+                navigate(location.state?.from || "/", { replace: true });
+            } else {
+                throw new Error("No tokens received");
+            }
         } catch (error) {
+            console.error("Login error:", error);
             alert("Неверный или просроченный код");
         } finally {
             setLoading(false);

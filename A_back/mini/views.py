@@ -1,11 +1,19 @@
 from django.contrib.auth.models import User
-from .serializers import LoginWithCodeSerializer
+from .serializers import LoginWithCodeSerializer, UserProfileSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import LoginCode
+from .models import LoginCode, UserProfile
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import generics
+
+class UserProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return self.request.user.profile
 
 class LoginWithCodeView(APIView):
     permission_classes = [AllowAny]
@@ -21,9 +29,26 @@ class LoginWithCodeView(APIView):
                 # Mark code as used
                 login_code.used = True
                 login_code.save()
-                # Get or create user
+                # Get or create user and profile
                 telegram_id = login_code.telegram_id
                 user, created = User.objects.get_or_create(username=telegram_id)
+
+                # Always create/update profile for Telegram users
+                profile, profile_created = UserProfile.objects.get_or_create(
+                    user=user,
+                    defaults={
+                        'is_telegram_user': True,
+                        'telegram_id': telegram_id,
+                        'display_name': user.username  # Default display_name
+                    }
+                )
+
+                # If profile already existed, make sure it's marked as Telegram user
+                if not profile_created:
+                    profile.is_telegram_user = True
+                    profile.telegram_id = telegram_id
+                    profile.save()
+
                 # Generate JWT tokens
                 refresh = RefreshToken.for_user(user)
                 return Response({
