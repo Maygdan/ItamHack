@@ -5,7 +5,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
 import "../styles/Form.css"
 import LoadingIndicator from "./LoadingIndicator";
 
-function Form({ route, method }) {
+function Form({ route, method, inFormElement }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [code, setCode] = useState("");
@@ -79,6 +79,7 @@ function Form({ route, method }) {
             <button className="form-button" type="submit">
                 {name}
             </button>
+            {inFormElement && <div className="telegram-login-links">{inFormElement}</div>}
         </form>
     );
 }

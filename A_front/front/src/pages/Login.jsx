@@ -16,9 +16,7 @@ function Login() {
 
     return (
         <div>
-            <Form route="/api/token/" method="login" />
-            <hr />
-            <a href="/telegram-login">Войти по коду из Telegram</a>
+            <Form route="/api/token/" method="login" inFormElement={<a href="/telegram-login">Войти по коду из Telegram</a>} />
         </div>
     )
 }

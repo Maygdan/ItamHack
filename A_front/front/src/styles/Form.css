@@ -34,3 +34,24 @@
 .form-button:hover {
   background-color: #0056b3;
 }
+
+.form-inform-link {
+  width: 95%;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.form-inform-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.telegram-login-links a {
+    color: #666;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.telegram-login-links a:hover {
+    color: #007bff;
+}
