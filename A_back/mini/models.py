@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import timedelta
+from datetime import timedelta, time
 from django.utils import timezone
 
 class LoginCode(models.Model):
@@ -8,6 +8,7 @@ class LoginCode(models.Model):
     telegram_id = models.CharField(max_length=50)
     expires_at = models.DateTimeField()
     used = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     @property
     def is_expired(self):
@@ -55,10 +56,56 @@ class UserProfile(models.Model):
 
     def update_level(self):
         """Обновляет уровень на основе количества участий в хакатонах"""
-        if self.hackathons_participated >= 5:
+        if self.hackathons_participated >= 10:
             self.level = 'experienced'
-        elif self.hackathons_participated >= 2:
+        elif self.hackathons_participated >= 5:
             self.level = 'intermediate'
         else:
             self.level = 'beginner'
         self.save()
+
+class Hackathon(models.Model):
+    DIFFICULTY_CHOICES = [
+        ('easy', 'Легкий'),
+        ('medium', 'Средний'),
+        ('hard', 'Сложный'),
+    ]
+
+    CATEGORY_CHOICES = [
+        ('it', 'IT'),
+        ('robotics', 'Робототехника'),
+        ('design', 'Дизайн'),
+        ('other', 'Другое'),
+    ]
+
+    name = models.CharField(max_length=200, verbose_name='Название')
+    start_date = models.DateField(verbose_name='Дата начала')
+    start_time = models.TimeField(default=time(10, 0), verbose_name='Время начала')
+    end_date = models.DateField(verbose_name='Дата окончания')
+    category = models.CharField(
+        max_length=20,
+        choices=CATEGORY_CHOICES,
+        default='it',
+        verbose_name='Категория'
+    )
+    difficulty = models.CharField(
+        max_length=20,
+        choices=DIFFICULTY_CHOICES,
+        default='medium',
+        verbose_name='Сложность'
+    )
+    max_teams = models.IntegerField(default=10, verbose_name='Максимальное количество команд')
+    registered_teams = models.IntegerField(default=0, verbose_name='Количество зарегистрированных команд')
+    required_roles = models.JSONField(
+        default=list,
+        verbose_name='Требуемые роли',
+        help_text='Список требуемых ролей, например: ["frontender", "backender", "designer"]'
+    )
+
+    class Meta:
+        verbose_name = 'Хакатон'
+        verbose_name_plural = 'Хакатоны'
+        ordering = ['start_date']
+
+    def __str__(self):
+        return self.name

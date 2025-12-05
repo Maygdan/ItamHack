@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
-from .serializers import LoginWithCodeSerializer, UserProfileSerializer
+from .serializers import LoginWithCodeSerializer, UserProfileSerializer, HackathonSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .models import LoginCode, UserProfile
+from .models import LoginCode, UserProfile, Hackathon
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -58,3 +58,18 @@ class LoginWithCodeView(APIView):
             except LoginCode.DoesNotExist:
                 return Response({"error": "Invalid code"}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class HackathonListView(generics.ListAPIView):
+    serializer_class = HackathonSerializer
+    permission_classes = [AllowAny]
+
+    def get_queryset(self):
+        return Hackathon.objects.all()
+
+class HackathonDatesView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        hackathons = Hackathon.objects.values_list('start_date', flat=True)
+        dates = list(set(str(date) for date in hackathons))  # Преобразовать в строки для JSON
+        return Response({'hackathon_dates': dates})

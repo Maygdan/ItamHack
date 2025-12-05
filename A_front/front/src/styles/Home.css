@@ -1,56 +1,55 @@
 .home-container {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  align-items: center;
+  background: linear-gradient(135deg, #FF7E79 0%, #FFA500 100%);
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 20px;
+  padding: 20px 0;
 }
 
-.home-title-centered {
-  text-align: center;
-  margin-bottom: 20px;
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
 }
 
 .home-title {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  text-align: center;
   letter-spacing: 1px;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
   animation: fadeInUp 1s ease-out;
 }
 
-.home-nav-centered {
+.home-nav {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 20px;
 }
 
-.home-nav-centered a {
+.home-nav a {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
-  padding: 5px 10px;
+  padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
-.home-nav-centered a:hover {
+.home-nav a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
 .home-logout-btn {
-  margin-left: 10px;
   background: #ff4444;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -58,6 +57,217 @@
 
 .home-logout-btn:hover {
   background: #cc0000;
+}
+
+.calendar-container {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.calendar-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.react-calendar {
+  width: 100% !important;
+  max-width: 600px !important;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.react-calendar__tile {
+  width: 36px !important;
+  height: 36px !important;
+  margin: 4px !important;
+  padding: 0 !important;
+  border-radius: 5px !important;
+  border: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #333 !important;
+  font-weight: bold !important;
+  backdrop-filter: blur(5px) !important;
+  transition: background 0.3s !important;
+}
+
+.react-calendar__tile:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.react-calendar__tile--now {
+  background: rgba(255, 235, 59, 0.3) !important;
+}
+
+.hackathon-date {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
+.hackathons-container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hackathons-container h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hackathons-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.hackathon-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 30px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hackathon-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hackathon-name {
+  margin-bottom: 20px;
+}
+
+.hackathon-name h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.hackathon-category {
+  font-size: 1rem;
+  font-weight: normal;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.hackathon-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hackathon-date, .hackathon-difficulty, .hackathon-teams {
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+.hackathon-date {
+  font-size: 1.1rem;
+  font-weight: medium;
+  color: #fff;
+}
+
+.hackathon-difficulty {
+  font-size: 1.1rem;
+  font-weight: medium;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hackathon-teams {
+  font-size: 1.1rem;
+  font-weight: medium;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.custom-calendar {
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.calendar-header button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.calendar-weekdays div {
+  text-align: center;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.calendar-day {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #333;
+  font-weight: bold;
+  backdrop-filter: blur(5px);
+  cursor: default;
+  transition: background 0.3s;
+}
+
+.hackathon-day {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
+.regular-day {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.empty {
+  background: none;
 }
 
 @keyframes fadeInUp {

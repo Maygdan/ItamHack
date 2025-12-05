@@ -22,7 +22,8 @@ function UserTypeRouter() {
             return;
         }
 
-        checkUserType();
+        // Always redirect to home for authenticated users
+        navigate("/home", { replace: true });
     }, [navigate]);
 
     const checkUserType = async () => {
