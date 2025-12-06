@@ -101,12 +101,8 @@ function Home() {
     <div className="home-container">
       <div className="home-nav">
         <Link to="/profile">👤 Профиль</Link>
-        <button
-          className="home-logout-btn"
-          onClick={() => { localStorage.clear(); navigate('/'); }}
-        >
-          🚪 Выйти
-        </button>
+        <Link to="/messages">📬 Сообщения</Link>
+        <Link to="/my-teams">👥 Мои команды</Link>
       </div>
 
       <div className="calendar-container">
@@ -130,17 +126,19 @@ function Home() {
         <h2>Текущие хакатоны</h2>
         <div className="hackathons-list">
           {hackathons.map((hackathon) => (
-            <div key={hackathon.id} className="hackathon-card">
-              <div className="hackathon-name">
-                <h3>{hackathon.name}</h3>
-                <p className="hackathon-category">{hackathon.category_display}</p>
+            <Link key={hackathon.id} to={`/hackathon/${hackathon.id}`} className="hackathon-card-link">
+              <div className="hackathon-card">
+                <div className="hackathon-name">
+                  <h3>{hackathon.name}</h3>
+                  <p className="hackathon-category">{hackathon.category_display}</p>
+                </div>
+                <div className="hackathon-info-row">
+                  <div className="hackathon-date">{hackathon.start_date}</div>
+                  <div className="hackathon-difficulty">{hackathon.difficulty_display}</div>
+                  <div className="hackathon-teams">{hackathon.registered_teams}/{hackathon.max_teams} команд</div>
+                </div>
               </div>
-              <div className="hackathon-info-row">
-                <div className="hackathon-date">{hackathon.start_date}</div>
-                <div className="hackathon-difficulty">{hackathon.difficulty_display}</div>
-                <div className="hackathon-teams">{hackathon.registered_teams}/{hackathon.max_teams} команд</div>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

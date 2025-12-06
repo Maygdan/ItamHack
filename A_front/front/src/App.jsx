@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Profile from "./pages/Profile"
+import HackathonDetail from "./pages/HackathonDetail"
+import Messages from "./pages/Messages"
+import MyTeams from "./pages/MyTeams"
 import NotFound from "./pages/NotFound"
 import TelegramLogin from "./pages/TelegramLogin"
 import ProtectedRoute from "./components/ProtectedRoute"
@@ -34,10 +37,34 @@ function App() {
           }
         />
         <Route
+          path="/hackathon/:id"
+          element={
+            <ProtectedRoute>
+              <HackathonDetail />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/profile"
           element={
             <ProtectedRoute>
               <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <ProtectedRoute>
+              <Messages />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/my-teams"
+          element={
+            <ProtectedRoute>
+              <MyTeams />
             </ProtectedRoute>
           }
         />

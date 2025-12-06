@@ -1,0 +1,92 @@
+.my-teams-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FF7E79 0%, #FFA500 100%);
+  color: white;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.teams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.team-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.team-card h3 {
+  margin-bottom: 10px;
+}
+
+.team-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.team-card li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.team-card button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background: #FF7E79;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.team-card button:hover {
+  background: #ff9990;
+}
+
+.team-card button:disabled {
+  background: #ccc;
+}
+
+.potentials {
+  margin-top: 10px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.potentials > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.delete-btn {
+  background: #ff4444;
+}
+
+.delete-btn:hover {
+  background: #cc0000;
+}

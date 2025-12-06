@@ -1,0 +1,59 @@
+.messages-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #FF7E79 0%, #FFA500 100%);
+  color: white;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px 15px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nav button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.message-card {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.action-buttons button {
+  margin: 0 10px 0 0;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.action-buttons button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.action-buttons button:first-child:hover {
+  background: rgba(0, 150, 0, 0.3);
+}
+
+.action-buttons button:last-child:hover {
+  background: rgba(200, 0, 0, 0.3);
+}

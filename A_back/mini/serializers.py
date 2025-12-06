@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import UserProfile, Hackathon
+from .models import UserProfile, Hackathon, HackathonParticipant, Team, TeamMember, Message
 
 class UserProfileSerializer(serializers.ModelSerializer):
     username = serializers.CharField(source='user.username', read_only=True)
@@ -37,3 +37,36 @@ class HackathonSerializer(serializers.ModelSerializer):
 
     def get_date_range(self, obj):
         return f"{obj.start_date.strftime('%d.%m')} {obj.start_time.strftime('%H.%M')}"
+
+class HackathonDetailSerializer(HackathonSerializer):
+    class Meta(HackathonSerializer.Meta):
+        fields = HackathonSerializer.Meta.fields + ['team_size_min', 'team_size_max', 'partners', 'registration_deadline']
+
+class TeamSerializer(serializers.ModelSerializer):
+    captain_username = serializers.CharField(source='captain.username', read_only=True)
+    member_count = serializers.SerializerMethodField()
+    members_list = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Team
+        fields = ['id', 'name', 'captain', 'captain_username', 'member_count', 'members_list', 'size_min', 'size_max', 'is_full']
+
+    def get_member_count(self, obj):
+        return obj.members.count()
+
+    def get_members_list(self, obj):
+        return [{'username': member.username, 'id': member.id} for member in obj.members.all()]
+
+class TeamCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Team
+        fields = ['name', 'hackathon', 'size_min', 'size_max']
+
+class MessageSerializer(serializers.ModelSerializer):
+    sender_username = serializers.CharField(source='sender.username', read_only=True)
+    receiver_username = serializers.CharField(source='receiver.username', read_only=True)
+    team_name = serializers.CharField(source='team.name', read_only=True)
+
+    class Meta:
+        model = Message
+        fields = ['id', 'sender', 'sender_username', 'receiver', 'receiver_username', 'team', 'team_name', 'message_type', 'status', 'text', 'sent_at']

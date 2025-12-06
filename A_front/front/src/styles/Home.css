@@ -139,10 +139,16 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hackathon-card:hover {
+.hackathon-card:hover, .hackathon-card-link:hover .hackathon-card {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.hackathon-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .hackathon-name {
